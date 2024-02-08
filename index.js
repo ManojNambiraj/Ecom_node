@@ -4,7 +4,8 @@ const cors = require("cors");
 require("dotenv").config();
 const db = require("./connection/db");
 
-const router = require("./router/ecomRouter");
+const popularRouter = require("./router/popularRouter");
+const equipmentRouter = require("./router/equipentRouter");
 
 app.use(express.json());
 app.use(
@@ -17,7 +18,8 @@ app.use(
 db(process.env.MONGO_URL);
 
 // Routing
-app.use("", router);
+app.use("/", popularRouter);
+app.use("/", equipmentRouter);
 
 // Server initialize
 app.listen(process.env.PORT || 3001, () => {
